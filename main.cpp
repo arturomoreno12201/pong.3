@@ -1,6 +1,8 @@
 #include <cstdlib>
 #include <random>
 #include "sfwdraw.h"
+#include "PlayerThings.h"
+#include "player.cpp"
 
 using namespace sfw;
 
@@ -101,55 +103,9 @@ void updateBall(Ball &b)
 	}
 }
 
-struct Player
-{
-	// How many variables do I need?
-	float x, y;
-	float size;
-	char up, down;
-};
-
-Player createPlayer(float a_x, char a_up, char a_down)
-{
-	Player ret;
-	ret.x    = a_x;
-	ret.up   = a_up;
-	ret.down = a_down;
-
-	ret.size = 75;
-	ret.y	 = 300;
-	return ret;
-}
-
-void drawPlayer(const Player &p)
-{
-	drawLine(p.x, p.y, p.x, p.y + p.size, RED);
-}
-
-void updatePlayer(Player &p)
-{
-	if (getKey(p.up))
-	{
-		p.y += getDeltaTime() * 500;
-	}
-
-	// If the key is S, then P1 will go down (-=) by the speed of delta time times 500
-	if (getKey(p.down))
-	{
-		p.y -= getDeltaTime() * 500;
-	}
 
 
-	if (p.y < 0)
-	{
-		p.y = 0;
-	}
 
-	if (p.y > 540)
-	{
-		p.y = 540;
-	}
-}
 
 int main()
 {
@@ -173,43 +129,7 @@ int main()
 			
 			drawPlayer(p1);
 			drawPlayer(p2);
-		/*
-		// PADDLE 1
-		// If the key is W, then P1 will go up (+=) by the speed of delta time times 500
-		if (getKey('W'))
-		{
-			acc += getDeltaTime() * 500;
-		}
-
-		// If the key is S, then P1 will go down (-=) by the speed of delta time times 500
-		if (getKey('S'))
-		{
-			acc -= getDeltaTime() * 500;
-		}
-
-		//The line
-		drawLine(10, 300 + acc, 10,  250 + acc, RED);
-
-		// PADDLE 2
-		// If the key is I, then P2 will go up (+=) by the speed of delta time times 500
-		if (getKey('I'))
-		{
-			acc2 += getDeltaTime() * 500;
-		}
-
-		// If the key is K, then P2 will go down (-=) by the speed of delta time times 500
-		if (getKey('K'))
-		{
-			acc2 -= getDeltaTime() * 500;
-		}
-
-		//The line
-		drawLine(790, 300 + acc2, 790, 250 + acc2, BLUE);
 		
-		accRand += getDeltaTime() * 100;
-
-		drawCircle(400 + accRand, 300 + accRand, 10, 30, BLACK);
-		*/
 			updateBall(b);
 			drawBall(b);
 
