@@ -5,17 +5,12 @@
 
 using namespace sfw;
 
-Player createPlayer(float a_x, char a_up, char a_down)
-{
-	Player ret;
-	ret.x = a_x;
-	ret.up = a_up;
-	ret.down = a_down;
 
-	ret.size = 75;
-	ret.y = 300;
-	return ret;
-}
+int player = 0;
+Player p2 = createPlayer(790, 'I', 'K');
+Player p1 = createPlayer(790, 'W', 'S');
+
+
 
 void drawPlayer(const Player &p)
 {

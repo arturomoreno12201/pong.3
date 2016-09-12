@@ -3,43 +3,11 @@
 #include "sfwdraw.h"
 #include "PlayerThings.h"
 #include "player.cpp"
+#include "Ball.h"
 
 using namespace sfw;
 
-void cool()
-{
-	
-
-	unsigned f = loadTextureMap("./res/tonc_font.png", 16, 6);
-	unsigned d = loadTextureMap("./res/fontmap.png",16,16);
-	unsigned r = loadTextureMap("./res/background.jpg");
-	unsigned u = loadTextureMap("./res/crosshair.png");
-
-	float acc = 0;
-	char c = '\0';
-
-	
-	{	
-		drawString(f, " !\"#$%&'()*+,./-\n0123456789:;<=>?\n@ABCDEFGHIJKLMNO\nPQRSTUVWXYZ[\\]^_\n`abcdefghijklmno\npqrstuvwxyz{|}~", 0, 600, 48, 48, 0, ' ');
-		drawTexture(r, 0, 600, 800, 600, 0, false,0, 0x88888888);
-
-		acc += getDeltaTime();
-		drawString(d, "TIME 4 FUN", 400, 300, 48, 48, -acc*24,'\0',RED);
-		
-		drawString(d, "This is Rice", 200, 100, 48, 48);
-		drawString(d, "6", 400, 32, 24, 24);
-		drawString(d, "12", 400, 600 - 32, 24, 24);
-		drawString(d, "3", 800-32, 300, 24, 24);
-		drawString(d, "9", 32, 300, 24, 24);
-
-		if(getMouseButton(MOUSE_BUTTON_RIGHT))
-			drawTexture(u, getMouseX(), getMouseY(), getTextureWidth(u)/2.5, getTextureHeight(u)/2.5,45,true,0,0x88ffffff);
-		else drawTexture(u, getMouseX(), getMouseY(), getTextureWidth(u)/2, getTextureHeight(u)/2);
-	}
-
-	termContext();
-}
-
+/*
 struct Ball
 {
 	float xpos, ypos;
@@ -101,7 +69,7 @@ void updateBall(Ball &b)
 		b.xvel = rand() % 1000 - 1010;
 		b.yvel = rand() % 1000 - 1010;
 	}
-}
+}*/
 
 
 
@@ -117,8 +85,8 @@ int main()
 	float accRand = rand();
 
 	int player = 0;
-	Player p1 = createPlayer( 10, 'W', 'S');
 	Player p2 = createPlayer(790, 'I', 'K');
+
 	Ball b = createBall(400, 290, 100, 100, 10, 30);
 	while (stepContext())
 	{		
